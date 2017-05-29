@@ -475,6 +475,24 @@ class Cytomine(object):
         imagegrp = self.get_image_group(id_image_group)
         return self.delete(imagegrp)
 
+    def get_image_group_hdf5(self, id_image_group_hdf5 = None):
+        mod = ImageGroupHDF5()
+        if id_image_group_hdf5:
+            mod.id = id_image_group_hdf5
+        return self.fetch(mod)
+
+    def get_image_group_hdf5_from_image_group(self, id_image_group = None):
+        mod = ImageGroupHDF5()
+        if id_image_group:
+            mod.group = id_image_group
+        return self.fetch(mod)
+
+    def get_spectra(self, id_image_group, x, y):
+        mod = ImageGroupSpectra()
+        mod.id = id_image_group
+        mod.x = x
+        mod.y = y
+        return self.fetch(mod)
 
     #userGroup
     def add_user_group(self, id_user, id_group):
