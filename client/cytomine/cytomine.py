@@ -475,6 +475,12 @@ class Cytomine(object):
         imagegrp = self.get_image_group(id_image_group)
         return self.delete(imagegrp)
 
+    def get_image_group_characteristics(self, id_image_group):
+        mod = ImageGroup()
+        mod.id = id_image_group
+        self.fetch(mod, mod.get_characteristic_url())
+       
+        
     def get_image_group_hdf5(self, id_image_group_hdf5 = None):
         mod = ImageGroupHDF5()
         if id_image_group_hdf5:
@@ -492,6 +498,18 @@ class Cytomine(object):
         mod.id = id_image_group
         mod.x = x
         mod.y = y
+        return self.fetch(mod)
+        
+    def get_image_sequence(self, id_image_sequence = None):
+        mod = ImageGroupSequence()
+        if id_image_sequence:
+            mod.id = id_image_sequence
+        return self.fetch(mod)
+        
+    def get_image_sequence_collection(self, id_image_group = None):
+        mod = ImageSequenceCollection()
+        if id_image_group:
+            mod.group = id_image_group
         return self.fetch(mod)
 
     #userGroup

@@ -54,6 +54,13 @@ class ImageGroup(Model):
         else:
             return "imagegroup.json"
 
+    def get_characteristic_url(self):
+        if hasattr(self, "id"):
+            return "imagegroup/%d/characteristics.json" % self.id
+        else:
+            return "404.json"
+
+
     def __str__( self ):
         return str(self.id) + " : " + str(self.name)
 

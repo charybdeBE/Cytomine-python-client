@@ -55,3 +55,30 @@ class ImageGroupSpectra(Model):
         return "%s : %s " % (self.position, self.spectra)
 
 
+class ImageSequence(Model):
+    def __init__(self, params = None):
+        super(ImageSequence, self).__init__(params)
+        self._callback_identifier = "imagesequence"
+
+    def to_url(self):
+        if hasattr(self, "id"):
+            return "imagesequence/%d.json" % self.id
+        else:
+            return "imagesequence.json"
+
+    def __str__( self ):
+        return "%s " % (self.id)
+
+
+class ImageSequenceCollection(Collection):    
+    def __init__(self, params = None):
+        super(ImageSequenceCollection, self).__init__(ImageSequence, params)
+
+    def to_url(self):
+        if hasattr(self, "group"):
+            return "imagegroup/%d/imageinstance.json"
+        else:
+            return "imagesequence.json"
+
+
+
