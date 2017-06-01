@@ -49,7 +49,10 @@ class ImageGroupSpectra(Model):
         self._callback_identifier = "imagegroupspectra"
 
     def to_url(self):
-        return "imagegroup/%d/%d/%d/pxl.json" % (self.id, self.x, self.y)
+    if hasattr(self, "width"):
+        return "imagegrouph5/%d/%d/%d/%d/%d/rectangle.json" % (self.id, self.x, self.y, self.width, self.height)
+    else:
+        return "imagegrouph5/%d/%d/%d/pxl.json" % (self.id, self.x, self.y)
 
     def __str__( self ):
         return "%s : %s " % (self.position, self.spectra)

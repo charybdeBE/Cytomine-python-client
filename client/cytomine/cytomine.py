@@ -493,13 +493,22 @@ class Cytomine(object):
             mod.group = id_image_group
         return self.fetch(mod)
 
-    def get_spectra(self, id_image_group, x, y):
+    def get_spectra_pixel(self, id_image_group, x, y):
         mod = ImageGroupSpectra()
         mod.id = id_image_group
         mod.x = x
         mod.y = y
         return self.fetch(mod)
         
+    def get_spectra_rectangle(self, id_image_group, x,y, width, height):
+        mod = ImageGroupSpectra()
+        mod.id = id_image_group
+        mod.x = x
+        mod.y = y
+        mod.width = width
+        mod.heught = height
+        return self.fetch(mod)   
+
     def get_image_sequence(self, id_image_sequence = None):
         mod = ImageGroupSequence()
         if id_image_sequence:
